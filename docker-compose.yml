@@ -1,0 +1,25 @@
+version: "3"
+services:
+  todoappdemo:
+    image: subhghosh/todoappdemo
+    ports:
+      - "8090:8090"
+    networks:
+      - test-mysql
+    depends_on:
+      - mysqldbtest
+ 
+  mysqldbtest:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    networks:
+      - test-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=todoApp
+      - MYSQL_USER=security
+      - MYSQL_PASSWORD=security  
+
+networks:
+  test-mysql:
